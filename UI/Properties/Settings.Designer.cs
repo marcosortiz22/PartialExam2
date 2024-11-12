@@ -26,6 +26,8 @@ namespace UI.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MSI\\SQLEXPRESS;Initial Catalog=LUGSegundoParcial;Integrated Security=" +
+            "True;Connect Timeout=30;")]
         public string DBConnectionString {
             get {
                 return ((string)(this["DBConnectionString"]));

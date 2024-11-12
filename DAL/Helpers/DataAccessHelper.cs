@@ -6,7 +6,7 @@ namespace DAL.Helpers;
 
 public static class DataAccessHelper
 {
-    private static string CONNECTION_STRING = ConfigurationManager.ConnectionStrings["MatchesDbConnection"].ConnectionString;
+    private static string CONNECTION_STRING = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
 
     public static DataTable GetDataTable(string commandText, Dictionary<string, object> parameters = null)
     {
@@ -116,7 +116,18 @@ public static class DataAccessHelper
 
     public static SqlDataReader GetDataReader(SqlCommand command)
     {
-        return command.ExecuteReader();
+        SqlDataReader reader;
+        try
+        {
+            reader = command.ExecuteReader();
+        }
+        catch (Exception ex)
+        {
+            Logger.Log(ex.ToString(), "ERROR");
+            throw new Exception("Error en base de datos, revisar logs.");
+        }
+
+        return reader;
     }
 
     private static SqlParameter[] GetSqlParameters(Dictionary<string, object> parameters)
